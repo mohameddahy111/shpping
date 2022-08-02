@@ -1,0 +1,8 @@
+.addButton{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    box-shadow: 1px 1px 10px ;
+    border-radius: 50%;
+    z-index: 9999;
+}

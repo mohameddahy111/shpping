@@ -1,0 +1,52 @@
+.contaner {
+  display: flex;
+  gap: 10px;
+}
+.left {
+  width: 30%;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  position: relative;
+  margin-left: -170px;
+  transition: 0.6s ease-in-out;
+}
+.leftsetopenSearch {
+  width: 30%;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  position: relative;
+  transition: 0.6s ease-in-out;
+}
+.filterList {
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+}
+.list {
+  box-shadow: 1px 1px 10px;
+  border-radius: 20px;
+  margin: 10px;
+}
+.left:hover {
+  margin-left: 0;
+}
+.contanerAllSearch{
+  margin: 10px;
+
+}
+.searchTitleContaner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  margin-bottom: 20px;
+
+}
+.right{
+  width: 100%;
+  margin-left: 10px;
+  padding: 10px;
+
+}
