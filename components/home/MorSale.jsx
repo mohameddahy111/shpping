@@ -24,7 +24,7 @@ export default function MorSale({ data , text }) {
       </Box>
       <Grid container spacing={1} p={1}>
         {data.map(x => (
-          <Grid item md={4} xs={12}>
+          <Grid  key={x._id} item md={4} xs={12}>
             <Card>
               <NextLink href={`/product/${x.slug}`} passHref>
                 <Link>

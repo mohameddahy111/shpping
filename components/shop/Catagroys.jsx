@@ -27,8 +27,8 @@ export default function Catagroys({ data }) {
       </Box>
       <Box>
         <List  > 
-          {data.map(x => (
-            <ListItem  sx={{borderRight :`20px solid ${x.color}`}}
+          {data.map((x,index )=> (
+            <ListItem  key={index} sx={{borderRight :`20px solid ${x.color}`}}
               className={styles.list}
               onClick={() => clickHandler(x.name)}
             >

@@ -102,6 +102,7 @@ function login() {
               <ListItem>
                 <Typography sx={{display :'flex' , alignItems :'center' , gap :'10px'}}>
                   Daon't have Accont ? 
+                </Typography>
                   <NextLink href={'/users/register'}passHref >
                     <Link sx={{textDecoration :'none'}}>
                       <Typography component={'h6'} variant='h6'>
@@ -109,7 +110,6 @@ function login() {
                       </Typography>
                     </Link>
                   </NextLink>
-                </Typography>
               </ListItem>
             </List>
           </form>

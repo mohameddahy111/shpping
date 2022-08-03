@@ -25,8 +25,10 @@ import NextLink from 'next/link';
 import { Add, Delete } from '@mui/icons-material';
 import styles from '../../styles/cart.module.css';
 import { useRouter } from 'next/router';
+import { useStateContext } from '../../context/ContextProvider';
 
 function cart() {
+  const { darkMode } = useStateContext();
   const { state, dispatch } = useContext(Store);
   const {
     userInfo,
@@ -46,15 +48,6 @@ function cart() {
   return (
     <div>
       <Layout title={'Cart'}>
-        <Box className={styles.addButton}>
-          <IconButton
-            onClick={() => {
-              router.push('/priPage/shop');
-            }}
-          >
-            <Add />
-          </IconButton>
-        </Box>
         <Box>
           <Typography component={'h1'} variant='h1' align='center' m={2}>
             cart items{' '}
@@ -88,7 +81,7 @@ function cart() {
           </Box>
         ) : (
           <Grid container spacing={1} p={1}>
-            <Grid item md={9} xs={12}>
+            <Grid item md={9} xs={12} position='relative'>
               <TableContainer>
                 <Table>
                   <TableHead>
@@ -137,6 +130,15 @@ function cart() {
                   ))}
                 </Table>
               </TableContainer>
+              <Box className={styles.addButton} position='absolute'>
+                <IconButton
+                  onClick={() => {
+                    router.push('/priPage/shop');
+                  }}
+                >
+                  <Add  />
+                </IconButton>
+              </Box>
             </Grid>
             <Grid item md={3} xs={12}>
               <Card>

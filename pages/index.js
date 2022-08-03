@@ -24,7 +24,7 @@ export default function Home() {
           {searchValueText ? (
             <Grid container spacing={1} p={1}>
               {searchNameList.map(x => (
-                <Grid item md={4} xs={12}>
+                <Grid item md={4} xs={12}  key={x._id} >
                   <Items data={x} />
                 </Grid>
               ))}

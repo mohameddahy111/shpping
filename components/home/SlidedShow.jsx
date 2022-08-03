@@ -8,7 +8,7 @@ export default function SlidedShow({ data }) {
     <Box className={styles.contanier}>
       <Carousel fade>
         {data.map(x => (
-            <Carousel.Item>
+            <Carousel.Item  key={x._id} >
           <Box className={styles.items} >
               <img
                 className={styles.showImage}

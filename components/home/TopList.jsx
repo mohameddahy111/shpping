@@ -11,8 +11,8 @@ export default function TopList() {
   }, []);
   return (
     <List className={styles.topList} id='topList'>
-      {topList.map(x => (
-        <ListItem>
+      {topList.map((x ,index) => (
+        <ListItem  key={index} >
           <Typography component={'a'} href={x.href}>{x.name}</Typography>
         </ListItem>
       ))}

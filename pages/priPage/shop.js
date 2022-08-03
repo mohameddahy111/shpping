@@ -10,6 +10,7 @@ import SearchBox from '../../components/shop/SearchBox';
 import Items from '../../components/Items';
 
 export default function shop() {
+
   const {
     openSearch,
     searchName,
@@ -17,6 +18,7 @@ export default function shop() {
     catagroyList,
     setsearchValueText,
     setcatagroyList,
+    darkMode
   } = useStateContext();
   const searchNameList = products.filter(x =>
     x.name.toLowerCase().includes(searchValueText.toLowerCase())
@@ -45,24 +47,24 @@ export default function shop() {
           <Box className={styles.right}>
             <Grid container spacing={1} p={1}>
               {searchValueText &&
-                searchNameList.map(x => (
-                  <Grid item md={4} xs={12}>
+                searchNameList.map((x ,index)=> (
+                  <Grid item md={4} xs={12} key={index} >
                     <Items data={x} />
                   </Grid>
                 ))}
             </Grid>
             <Grid container spacing={1} p={1}>
               {catagroyListValue &&
-                catagroyListValue.map(x => (
-                  <Grid item md={4} xs={12}>
+                catagroyListValue.map((x ,index) => (
+                  <Grid item md={4} xs={12} key={index}>
                     <Items data={x} />
                   </Grid>
                 ))}
             </Grid>
             {searchValueText === '' && catagroyList === '' && (
-              <Grid container spacing={1}>
-                {products.map(x => (
-                  <Grid item md={4} xs={12}>
+              <Grid container spacing={1} >
+                {products.map((x ,index) => (
+                  <Grid item md={4} xs={12} key={index}>
                     <Items data={x} />
                   </Grid>
                 ))}

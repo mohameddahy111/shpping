@@ -134,7 +134,7 @@ export const products = [
       { size: 'M', price: '160' },
       { size: 'XL', price: '175' },
     ],
-    stock: 10,
+    stock: 0,
     disCont: '',
     new: false,
     show: false,

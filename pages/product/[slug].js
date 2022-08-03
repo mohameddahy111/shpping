@@ -70,6 +70,10 @@ export default function productScreen() {
     setnewPrice(size);
   };
   const addToCartHandler = item => {
+    if (newPrice === '') {
+      enqueueSnackbar('plece shoesse the size', { variant: 'error' });
+      return;
+    }
     const existItem = cartItems?.find(x => x._id === item._id);
     if (existItem) {
       enqueueSnackbar(`${items.name} update`, { variant: 'success' });
@@ -176,6 +180,7 @@ export default function productScreen() {
                       onChange={e => {
                         setQuantity(e.target.value);
                       }}
+                      required={true}
                     >
                       {[...Array(items.stock).keys()].map(x => (
                         <MenuItem key={x + 1} value={x + 1}>
@@ -215,9 +220,15 @@ export default function productScreen() {
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                      <Typography component={'h2'} variant='h2'>
-                        {items.stock > 0 ? 'in Stock' : 'out of stock'}
-                      </Typography>
+                      {items.stock > 0 ? (
+                        <Typography component={'h2'} variant='h2'>
+                          in Stock
+                        </Typography>
+                      ) : (
+                        <Typography component={'h5'} variant='h5'>
+                          out off Stock
+                        </Typography>
+                      )}
                     </Grid>
                   </ListItem>
                   <ListItem>
@@ -225,15 +236,15 @@ export default function productScreen() {
                       fullWidth
                       variant='contained'
                       disabled={items.stock > 0 ? false : true}
-                      // onClick={() => {
-                      //   addTocartItem(items, newImage);
-                      // }}
                       onClick={() => addToCartHandler(items)}
                     >
-                      <Typography component={'h2'} variant='h2'>
-                        {' '}
-                        add to cart
-                      </Typography>
+                      {items.stock > 0 ? (
+                        <Typography component={'h2'} variant='h2'>
+                          add to cart
+                        </Typography>
+                      ) : (
+                        <h5> &#128553; &#128553; &#128553;</h5>
+                      )}
                     </Button>
                   </ListItem>
                 </List>
@@ -241,8 +252,8 @@ export default function productScreen() {
             </Grid>
           </Grid>
           <Box className={styles.gallayImage}>
-            {gallary.map(x => (
-              <Box className={styles.gallayImageq}>
+            {gallary.map((x,index) => (
+              <Box className={styles.gallayImageq} key={index}>
                 <img
                   src={x.img}
                   width={100}
