@@ -1,0 +1,9 @@
+.longout {
+  margin-top: 150px;
+  text-align: center;
+  gap: 10px;
+  width: 100%;
+}
+.longout a {
+  color: #f0c000;
+}

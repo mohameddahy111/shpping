@@ -37,8 +37,8 @@ export const iconList = [
     icon: '/png/cart1.png',
   },
   {
-    name: 'Dilvery',
-    href: '/priPage/dilvery',
+    name: 'Delivery',
+    href: '/priPage/delivery',
     icon: '/png/dlivrey2.png',
   },
   {

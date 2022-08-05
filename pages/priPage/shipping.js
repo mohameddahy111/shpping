@@ -1,16 +1,24 @@
 import { Button, List, ListItem, TextField, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Layout from '../../components/layout/Layout';
 import StepCheck from '../../components/shipping/StepCheck'
+import { useStateContext } from '../../context/ContextProvider';
 function shipping() {
+  const {login  , setLogin}=useStateContext()
+  useEffect(()=>{
+    if (!login) {
+      router.push('/')
+    }
+  },[login])
   const router = useRouter();
   const {
     handleSubmit,
     formState: { errors },
     control,
   } = useForm();
+
 
   const submitHandler = (
     name,

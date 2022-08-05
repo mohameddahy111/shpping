@@ -18,7 +18,6 @@ export default function shop() {
     catagroyList,
     setsearchValueText,
     setcatagroyList,
-    darkMode
   } = useStateContext();
   const searchNameList = products.filter(x =>
     x.name.toLowerCase().includes(searchValueText.toLowerCase())

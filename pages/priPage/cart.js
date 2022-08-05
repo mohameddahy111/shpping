@@ -26,21 +26,24 @@ import { Add, Delete } from '@mui/icons-material';
 import styles from '../../styles/cart.module.css';
 import { useRouter } from 'next/router';
 import { useStateContext } from '../../context/ContextProvider';
+import { useSnackbar } from 'notistack';
 
 function cart() {
-  const { darkMode } = useStateContext();
+  const { login } = useStateContext();
   const { state, dispatch } = useContext(Store);
   const {
-    userInfo,
     cart: { cartItems },
   } = state;
+  const {enqueueSnackbar , closeSnackbar}=useSnackbar()
   const removItme = item => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: { ...item } });
+    enqueueSnackbar(`${item.name } is removed` , {variant :'error'})
   };
   const router = useRouter();
   const checkedHandler = () => {
-    if (userInfo) {
+    if (login) {
       router.push('/priPage/shipping');
+      return
     }
     router.push('/users/login');
   };
@@ -60,7 +63,7 @@ function cart() {
               alignItems: 'center',
               gap: '20px',
               justifyContent: 'center',
-              mt: '50px',
+              mt:'50px'
             }}
           >
             <Typography component={'h2'} variant='h2'>
@@ -79,6 +82,7 @@ function cart() {
               </Link>
             </NextLink>
           </Box>
+          
         ) : (
           <Grid container spacing={1} p={1}>
             <Grid item md={9} xs={12} position='relative'>
@@ -89,6 +93,7 @@ function cart() {
                       <TableCell>Image</TableCell>
                       <TableCell>Item name</TableCell>
                       <TableCell>Quntatiy </TableCell>
+                      <TableCell>Size </TableCell>
                       <TableCell>price </TableCell>
                       <TableCell>Action </TableCell>
                     </TableRow>
@@ -117,6 +122,7 @@ function cart() {
                           </NextLink>
                         </TableCell>
                         <TableCell>{x.quantity}</TableCell>
+                        <TableCell>{x.newSize}</TableCell>
                         <TableCell>
                           {x.newPrice ? x.newPrice : x.price}
                         </TableCell>

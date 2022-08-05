@@ -1,19 +1,45 @@
-import { Box, List, ListItem, TextField, Typography,Button, Link } from '@mui/material';
-import React from 'react';
+import {
+  Box,
+  List,
+  ListItem,
+  TextField,
+  Typography,
+  Button,
+  Link,
+} from '@mui/material';
+import React, { useContext, useEffect } from 'react';
 import NextLink from 'next/link';
 import Layout from '../../components/layout/Layout';
 import { Controller, useForm } from 'react-hook-form';
+import { useStateContext } from '../../context/ContextProvider';
+import { Store } from '../../context/Store';
+import { useRouter } from 'next/router';
 
 function login() {
+  const { login, setlogin } = useStateContext();
+  const { state, dispatch } = useContext(Store);
+  const {
+    cart: { cartItems },
+  } = state;
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const submitHandler = () => {};
+  const submitHandler = () => {
+    if ( cartItems.length > 0) {
+      router.push('/priPage/shipping');
+    }
+    if (cartItems.length === 0) {
+      router.push('/');
+    }
+    setlogin(true);
+  };
+  const router = useRouter();
   return (
     <div>
-      <Layout>
+      <Layout title='login'>
         <Box
           sx={{
             textAlign: 'center',
@@ -93,23 +119,30 @@ function login() {
                 />
               </ListItem>
               <ListItem>
-                <Button  fullWidth variant='contained'  color='secondary' type='submit'>
+                <Button
+                  fullWidth
+                  variant='contained'
+                  color='secondary'
+                  type='submit'
+                >
                   <Typography component={'h2'} variant='h2'>
                     login
                   </Typography>
                 </Button>
               </ListItem>
               <ListItem>
-                <Typography sx={{display :'flex' , alignItems :'center' , gap :'10px'}}>
-                  Daon't have Accont ? 
+                <Typography
+                  sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                >
+                  Daon't have Accont ?
                 </Typography>
-                  <NextLink href={'/users/register'}passHref >
-                    <Link sx={{textDecoration :'none'}}>
-                      <Typography component={'h6'} variant='h6'>
+                <NextLink href={'/users/register'} passHref>
+                  <Link sx={{ textDecoration: 'none' }}>
+                    <Typography component={'h6'} variant='h6'>
                       Register
-                      </Typography>
-                    </Link>
-                  </NextLink>
+                    </Typography>
+                  </Link>
+                </NextLink>
               </ListItem>
             </List>
           </form>

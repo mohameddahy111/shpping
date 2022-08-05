@@ -28,6 +28,7 @@ export default function productScreen() {
   const [newImage, setnewImage] = useState('');
   const [catagroy, setcatagroy] = useState('');
   const [newPrice, setnewPrice] = useState('');
+  const [newSize, setNewSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   const router = useRouter();
   const { closeSnackbar, enqueueSnackbar } = useSnackbar();
@@ -67,7 +68,8 @@ export default function productScreen() {
   //   }
   // };
   const updateSize = size => {
-    setnewPrice(size);
+    setnewPrice(size.price);
+    setNewSize(size.size)
   };
   const addToCartHandler = item => {
     if (newPrice === '') {
@@ -79,12 +81,12 @@ export default function productScreen() {
       enqueueSnackbar(`${items.name} update`, { variant: 'success' });
       dispatch({
         type: 'CART_ADD_ITEM',
-        payload: { ...items, newPrice, quantity, newImage },
+        payload: { ...items, newPrice, quantity, newImage , newSize },
       });
     } else {
       dispatch({
         type: 'CART_ADD_ITEM',
-        payload: { ...items, newPrice, quantity, newImage },
+        payload: { ...items, newPrice, quantity, newImage  , newSize},
       });
       enqueueSnackbar(`${items.name} add to cart`, { variant: 'success' });
     }
@@ -147,8 +149,8 @@ export default function productScreen() {
                     <span>size </span> :
                   </Typography>
                   <Typography component={'h2'} variant='h2'>
-                    {size.map(x => (
-                      <> {x.size}, </>
+                    {size.map((x,index) => (
+                      <div key={index}> {x.size}, </div>
                     ))}
                   </Typography>
                 </ListItem>
@@ -163,12 +165,12 @@ export default function productScreen() {
                     <span>choose size : </span>
                   </Typography>
                   <Select
-                    onChange={e => {
-                      updateSize(e.target.value);
-                    }}
+                    onChange={e =>
+                      updateSize(e.target.value)
+                    }
                   >
                     {size.map((x, index) => (
-                      <MenuItem key={index} value={x.price}>
+                      <MenuItem key={index} value={x}>
                         {x.size}{' '}
                       </MenuItem>
                     ))}

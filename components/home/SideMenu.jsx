@@ -9,9 +9,9 @@ import { useRouter } from 'next/router';
 
 export default function SideMenu({ title }) {
   const router = useRouter();
-  const { openList, setopenList } = useStateContext();
+  const { openList, setopenList, icon, setIcon } = useStateContext();
   const [tit, setTit] = useState('');
-  const [icon, setIcon] = useState('');
+  // const [icon, setIcon] = useState('');
   useEffect(() => {
     iconList.map(x => {
       if (title === x.name) {
@@ -20,17 +20,22 @@ export default function SideMenu({ title }) {
       }
     });
   }, [title]);
-  const clickHandler = x => {
+
+  function clickHandler(x) {
     router.push(x);
     setopenList(false);
-  };
+  }
   return (
     <>
       {openList && (
         <Box className={styles.sideMenu}>
           {tit ? (
             <Box className={styles.tit}>
-              <Image src={icon} width={50} height={50} />
+              <Image
+                src={icon}
+                width={50}
+                height={50}
+              />
               <Typography variant='h2'>{tit} </Typography>
               <IconButton
                 onClick={() => {
