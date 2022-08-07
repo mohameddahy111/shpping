@@ -90,6 +90,13 @@ function reducer(state, action) {
           paymentMethod: '',
         },
       };
+    case 'Finsh_order':
+      return {
+        ...state,
+        cart: {
+          cartItems: [],
+        },
+      };
 
     default:
       return state;

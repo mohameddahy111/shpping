@@ -257,7 +257,10 @@ export default function Layout({ children, title }) {
                             </Typography>
                           </ListItem>
                         </list>
-                        <IconButton onClick={handlerLogin} sx={{backgroundColor :'#fff'}}>
+                        <IconButton
+                          onClick={handlerLogin}
+                          sx={{ backgroundColor: '#fff' }}
+                        >
                           <Close />
                         </IconButton>
                       </Box>

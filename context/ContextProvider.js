@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from 'react';
 const StateContext = createContext();
 export const ContextProvider = ({ children }) => {
   const [openList, setopenList] = useState(false);
-  const [login, setlogin] = useState(false);
+  const [login, setlogin] = useState(true);
   const [loginAvatar, setloginAvatar] = useState(false);
   const [openSearch, setopenSearch] = useState(false);
   const [searchName, setsearchName] = useState('');

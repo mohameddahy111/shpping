@@ -29,7 +29,7 @@ function shipping() {
     nots,
     building
   ) => {
-    router.push('/pay');
+    router.push('/priPage/pay');
   };
   return (
     <Layout>
